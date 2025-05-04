@@ -64,7 +64,7 @@ body {
   
 .hero {
     height: 40vh;
-    background-image: url('/Users/jerffesonoliveira/acutis/media/hero.jpg');
+    background-image: url('../../media/hero.jpg');
     background-repeat: no-repeat;
     background-size: 73% auto;           /* garante que cubra todo o container */
     background-position: center 10%;  /* mostra a parte superior central da imagem */
