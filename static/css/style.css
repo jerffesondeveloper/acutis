@@ -56,7 +56,6 @@ html, body {
 
 /* ---- Ajuste da hero e cor de fundo da página ----*/
 body {
-    background-image: url('media/textures/pattern.png');
     background-repeat: repeat;
     background-color: #f9f9f9;
   }
