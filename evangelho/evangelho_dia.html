@@ -10,6 +10,11 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
     rel="stylesheet"
   >
+  <!-- Font Awesome para ícones -->
+  <link 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+    rel="stylesheet"
+  >
   <!-- Seu CSS customizado -->
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
@@ -17,9 +22,11 @@
 
   <!-- HEADER -->
   <header class="bg-dark text-white d-flex align-items-center justify-content-between py-3 px-3">
-    <a href="../index.html" class="btn btn-light btn-sm">← Início</a>
+    <a href="../index.html" class="btn btn-light btn-sm">
+      <i class="fas fa-arrow-left me-1"></i>Início
+    </a>
     <div class="text-center flex-grow-1">
-      <h1 class="h5 m-0">✝️ Evangelho e Leituras</h1>
+      <h1 class="h5 m-0">Evangelho e Leituras</h1>
       <p id="data-liturgia" class="fst-italic mb-0"></p>
     </div>
     <div style="width: 60px;"></div>
@@ -37,150 +44,42 @@
       </div>
     </div>
 
-    <!-- 1ª LEITURA -->
-    <section id="leitura1" class="card mb-4 shadow-sm">
-      <div class="card-body">
-        <h2 class="card-title h5">1ª Leitura</h2>
-        <div id="texto-leitura1" class="card-text">—</div>
-      </div>
-    </section>
+    <!-- Semana / ciclo litúrgico -->
+    <div id="liturgia-semana" class="text-center text-secondary mb-4"></div>
 
-    <!-- SALMO -->
-    <section id="salmo" class="card mb-4 shadow-sm">
-      <div class="card-body">
-        <h2 class="card-title h5">Salmo Responsorial</h2>
-        <div id="texto-salmo" class="card-text">—</div>
-      </div>
-    </section>
-
-    <!-- 2ª LEITURA -->
-    <section id="leitura2" class="card mb-4 shadow-sm d-none">
-      <div class="card-body">
-        <h2 class="card-title h5">2ª Leitura</h2>
-        <div id="texto-leitura2" class="card-text"></div>
-      </div>
-    </section>
-
-    <!-- EVANGELHO -->
-    <section id="evangelho" class="card mb-4 shadow-sm">
-      <div class="card-body">
-        <h2 class="card-title h5">Evangelho</h2>
-        <div id="texto-evangelho" class="card-text">—</div>
-      </div>
-    </section>
+    <!-- CONTAINER DE LEITURAS (precisa existir para evangelho.js) -->
+    <div id="leituras-container">
+      <!--
+        O seu evangelho.js vai limpar este container e injetar:
+        - 1ª Leitura
+        - Salmo
+        - 2ª Leitura (se houver)
+        - Evangelho
+      -->
+    </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-dark text-white text-center py-3">
-    <small>&copy; 2025 Acutis</small>
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    <p class="mb-0">
+      &copy; 2025 Jerffeson Oliveira.<br>
+      Laudare, Benedicere, Praedicare.
+    </p>
+    <button 
+      type="button"
+      class="btn btn-link text-white small text-decoration-underline"
+      data-bs-toggle="modal"
+      data-bs-target="#modalSobre"
+    >
+      SOBRE
+    </button>
   </footer>
 
   <!-- Bootstrap JS -->
   <script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
   </script>
-
-  <!-- Script: consome API via AllOrigins e corrige o caminho para readings -->
-  <script>
-    const inputData = document.getElementById('dataLiturgia');
-    const btnBuscar = document.getElementById('btnBuscar');
-    const hdrData   = document.getElementById('data-liturgia');
-    const txt1      = document.getElementById('texto-leitura1');
-    const txtSalmo  = document.getElementById('texto-salmo');
-    const sec2      = document.getElementById('leitura2');
-    const txt2      = document.getElementById('texto-leitura2');
-    const txtEvang  = document.getElementById('texto-evangelho');
-
-    async function carregarLeituras(date) {
-      const [ano, mes, dia] = date.split('-');
-      hdrData.textContent = `${dia}/${mes}/${ano}`;
-
-      const apiUrl = `https://api-liturgia-diaria.vercel.app/?date=${date}`;
-      const proxy  = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
-
-      try {
-        const res  = await fetch(proxy);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-
-        console.log('API Liturgia Diária — today completo:', JSON.stringify(json.today, null, 2));
-
-        // usar json.today.readings em vez de json.readings
-        const R = json.today.readings || {};
-
-        // 1ª Leitura
-        if (R.first_reading) {
-          const fr = R.first_reading;
-          txt1.innerHTML = `
-            <div class="fw-bold">${fr.title}</div>
-            <p>${fr.text}</p>
-            <div class="fst-italic">${fr.footer}</div>`;
-        } else {
-          txt1.textContent = '—';
-        }
-
-        // Salmo
-        // Salmo (resposta logo após o título)
-        if (R.psalm && R.psalm.content_psalm) {
-          const ps = R.psalm;
-          const salmoHtml = ps.content_psalm.map(l => `<p>${l}</p>`).join('');
-          txtSalmo.innerHTML = `
-            <div class="fw-bold">${ps.title}</div>
-            <div class="fst-italic mb-2">${ps.response}</div>
-            ${salmoHtml}`;
-        } else {
-          txtSalmo.textContent = '—';
-        }
-
-
-        // 2ª Leitura
-        if (R.second_reading) {
-          sec2.classList.remove('d-none');
-          const sr = R.second_reading;
-          txt2.innerHTML = `
-            <div class="fw-bold">${sr.title}</div>
-            <p>${sr.text}</p>
-            <div class="fst-italic">${sr.footer}</div>`;
-        } else {
-          sec2.classList.add('d-none');
-          txt2.textContent = '';
-        }
-
-        // Evangelho
-        if (R.gospel) {
-          const gv = R.gospel;
-          txtEvang.innerHTML = `
-            <div class="fw-bold">${gv.head_title || ''}</div>
-            <p>${gv.head || ''}</p>
-            <p>${gv.text}</p>
-            <div class="fst-italic">${gv.footer_response || gv.footer || ''}</div>`;
-        } else {
-          txtEvang.textContent = '—';
-        }
-
-      } catch (err) {
-        console.error('Erro ao carregar leituras:', err);
-        txt1.textContent     = `Falha: ${err.message}`;
-        txtSalmo.textContent = '';
-        sec2.classList.add('d-none');
-        txtEvang.textContent = '';
-      }
-    }
-
-    btnBuscar.addEventListener('click', () => {
-      if (!inputData.value) return alert('Escolha uma data primeiro.');
-      carregarLeituras(inputData.value);
-    });
-
-    window.addEventListener('load', () => {
-      const hoje = new Date();
-      const dd   = String(hoje.getDate()).padStart(2, '0');
-      const mm   = String(hoje.getMonth() + 1).padStart(2, '0');
-      const yyyy = hoje.getFullYear();
-      const today = `${yyyy}-${mm}-${dd}`;
-      inputData.value = today;
-      carregarLeituras(today);
-    });
-  </script>
+  <!-- Agora o seu JS externo, no caminho correto -->
+  <script src="../static/js/evangelho.js"></script>
 </body>
 </html>
