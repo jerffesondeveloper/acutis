@@ -1,11 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evangelho e Leituras | Acutis</title>
+
+  <!-- Bootstrap CSS (opcional) -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet"
+  >
+  <!-- Seu CSS customizado -->
+  <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h1> voce chegou</h1>
+
+  <!-- ========== HEADER ========== -->
+  <header class="bg-dark text-white d-flex align-items-center justify-content-between py-3 px-3">
+    <!-- Botão Voltar -->
+    <a href="../index.html" class="btn btn-light btn-sm">
+      ← Início
+    </a>
+  
+    <!-- Título centralizado -->
+    <div class="text-center flex-grow-1">
+      <h1 class="h5 m-0">✝️ Evangelho e Leituras</h1>
+      <p id="data-liturgia" class="fst-italic mb-0">
+        <!-- aqui entra “04/05/2025 — 3º Domingo da Páscoa, Ano C” -->
+      </p>
+    </div>
+  
+    <!-- Espaço vazio para equilibrar o flexbox -->
+    <div style="width: 60px;"></div>
+  </header>
+  
+
+  <!-- ========== FILTRO DE DATA ========== -->
+  <main class="container my-5">
+    <div class="row g-3 align-items-end mb-4">
+      <div class="col-sm-6">
+        <label for="dataLiturgia" class="form-label">Escolha a data:</label>
+        <input 
+          type="date" 
+          id="dataLiturgia" 
+          class="form-control"
+        >
+      </div>
+      <div class="col-sm-6 text-sm-end">
+        <button id="btnBuscar" class="btn btn-primary">
+          Buscar Leituras
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== PRIMEIRA LEITURA ========== -->
+    <section id="leitura1" class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title h5">1ª Leitura</h2>
+        <div id="texto-leitura1" class="card-text">
+          <!-- Texto da 1ª Leitura -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SALMO RESPONSORIAL ========== -->
+    <section id="salmo" class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title h5">Salmo Responsorial</h2>
+        <div id="texto-salmo" class="card-text">
+          <!-- Texto do Salmo -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 2ª LEITURA (OPCIONAL) ========== -->
+    <section 
+      id="leitura2" 
+      class="card mb-4 shadow-sm d-none"
+    >
+      <div class="card-body">
+        <h2 class="card-title h5">2ª Leitura</h2>
+        <div id="texto-leitura2" class="card-text">
+          <!-- Texto da 2ª Leitura, se houver -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EVANGELHO ========== -->
+    <section id="evangelho" class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title h5">Evangelho</h2>
+        <div id="texto-evangelho" class="card-text">
+          <!-- Texto do Evangelho -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-dark text-white text-center py-3">
+    <small>&copy; 2025 Acutis</small>
+  </footer>
+
+  <!-- Bootstrap JS (opcional) -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- Seu arquivo JS para buscar e preencher as leituras -->
+  <script src="../static/js/evangelho.js"></script>
 </body>
 </html>

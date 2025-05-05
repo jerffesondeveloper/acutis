@@ -80,11 +80,9 @@ body {
   }
   
 .hero header {
-    position: relative;                 /* para ficar acima do overlay */
+    position: relative;                
     z-index: 1;
   }
-  
-  
   
 
 /*------Ajustes para telefone--------*/
