@@ -120,16 +120,18 @@
         }
 
         // Salmo
+        // Salmo (resposta logo após o título)
         if (R.psalm && R.psalm.content_psalm) {
           const ps = R.psalm;
           const salmoHtml = ps.content_psalm.map(l => `<p>${l}</p>`).join('');
           txtSalmo.innerHTML = `
             <div class="fw-bold">${ps.title}</div>
-            ${salmoHtml}
-            <div class="fst-italic">${ps.response}</div>`;
+            <div class="fst-italic mb-2">${ps.response}</div>
+            ${salmoHtml}`;
         } else {
           txtSalmo.textContent = '—';
         }
+
 
         // 2ª Leitura
         if (R.second_reading) {
