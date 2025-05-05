@@ -14,8 +14,6 @@ html, body {
       margin-right: 400px; /* ou 50px, 6rem, etc. — ajuste conforme quiser */
     }
   }
-  
-
 
 /* -----------cards de forma individual-----------*/
 .card-missal {
@@ -107,7 +105,142 @@ body {
   }
 
  
-  
-  
-  
-  
+  /* Títulos das leituras */
+#leituras-container .card-title.h5 {
+  color: #c00 !important;
+}
+
+#leituras-container .fw-bold{
+  color: rgb(5, 5, 5) !important;
+}
+
+/* -----texto das leituras*--------/
+
+/* 1) Fonte mais legível no corpo do texto */
+body {
+  font-family: 'Open Sans', sans-serif, !important;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 2) Limita a largura de leitura e centraliza */
+#leituras-container section + section {
+  margin-top: 1.5rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+
+/* 3) Espaçamento interno dos cards */
+.card-body {
+  background: #fafafa;
+}
+
+.card-title.h5 {
+  background: #f0f0f0;
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+
+/* 5) Espaçamento entre parágrafos */
+.card-text {
+  margin-top: 1rem;
+  line-height: 1.75;
+}
+
+.card-text p:last-child {
+  margin-bottom: 0; /* evita espaçamento extra no final */
+}
+
+
+/* 6) Destaque sutil nas citações (footer) */
+.fst-italic.fw-bold {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Destaque para a Semana Litúrgica */
+#liturgia-semana {
+  font-size: 1.5rem;             /* tamanho maior */
+  font-weight: 600;              /* peso semi-negrito */
+  text-transform: uppercase;     /* tudo em maiúsculas */
+  letter-spacing: 0.05em;        /* espaço entre as letras */
+  color: #c00;                   /* vermelho principal */
+  margin-bottom: 2rem;           /* espaço abaixo */
+  padding-bottom: 0.5rem;        /* espaçamento interno inferior */
+  border-bottom: 2px solid #c00; /* linha vermelha marcando o título */
+}
+
+
+/* 8) Botões e inputs com mais espaçamento */
+#btnBuscar {
+  padding: 0.6rem 1.2rem;
+}
+#dataLiturgia {
+  padding: 0.5rem;
+}
+
+/* 9) Responsivo: reduzindo margens em telas pequenas */
+@media (max-width: 576px) {
+  #leituras-container {
+    padding: 0 0.5rem;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+:root {
+  --primary-red: #c00;
+  --background-light: #fafafa;
+}
+
+#liturgia-semana {
+  color: var(--primary-red);
+  border-bottom-color: var(--primary-red);
+}
+
+.verse-number {
+  color: var(--primary-red);
+}
+
+.card-body {
+  background: var(--background-light);
+}
+
+/* botão de voltar ao início */
+.back-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.back-btn i {
+  font-size: 1.1rem;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}

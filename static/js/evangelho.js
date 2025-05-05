@@ -24,15 +24,26 @@ async function carregarLeituras(date) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
 
-    // exibe o título da semana/ciclo litúrgico (texto HTML)
-    // obtém o HTML completo
+    // … depois de obter json.today.entry_title …
     const fullTitle = json.today.entry_title || '';
-    // divide em cada <br/> (aceita <br>, <br/> ou <br />) e pega só a primeira parte
-    const firstLine = fullTitle.split(/<br\s*\/?>/i)[0].trim();
-    // exibe sem tags HTML, apenas texto limpo
-    liturgiaSemanaEl.textContent = firstLine;
+    let firstLine = fullTitle.split(/<br\s*\/?>/i)[0].trim();
 
-    // agora popula as leituras
+    // AQUI você faz a correção de acentos:
+    firstLine = firstLine
+    .replace(/Pascoa/g,      'Páscoa')
+    .replace(/Misericordia/g,'Misericórdia');
+    firstLine = firstLine.replace(/^(\d+)(?:[aoAOªº]\.?)?/, '$1°');
+    
+  
+    // aplica esilos no titulo liturgico
+    liturgiaSemanaEl.textContent        = firstLine;
+    liturgiaSemanaEl.style.fontSize     = '2.5rem';
+    liturgiaSemanaEl.style.fontWeight   = '500';
+    liturgiaSemanaEl.classList.remove('text-secondary');
+    liturgiaSemanaEl.style.color = '#fc1c03';   // cor do tempo da liturgia
+
+// segue o restante da montagem das leituras…
+
     const R = json.today.readings || {};
 
     // 1ª Leitura
@@ -43,7 +54,7 @@ async function carregarLeituras(date) {
             <h2 class="card-title h5">1ª Leitura</h2>
             <div class="fw-bold">${R.first_reading.title}</div>
             <p>${R.first_reading.text}</p>
-            <div class="fst-italic">${R.first_reading.footer}</div>
+            <div class="fst-italic fw-bold">${R.first_reading.footer}</div>
           </div>
         </section>`;
     }
@@ -71,7 +82,7 @@ async function carregarLeituras(date) {
             <h2 class="card-title h5">2ª Leitura</h2>
             <div class="fw-bold">${R.second_reading.title}</div>
             <p>${R.second_reading.text}</p>
-            <div class="fst-italic">${R.second_reading.footer}</div>
+            <div class="fst-italic fw-bold">${R.second_reading.footer}</div>
           </div>
         </section>`;
     }
@@ -85,7 +96,7 @@ async function carregarLeituras(date) {
             <div class="fw-bold">${R.gospel.head_title || ''}</div>
             <p>${R.gospel.head || ''}</p>
             <p>${R.gospel.text}</p>
-            <div class="fst-italic">${R.gospel.footer_response || R.gospel.footer || ''}</div>
+            <div class="fst-italic fw-bold">${R.gospel.footer_response || R.gospel.footer || ''}</div>
           </div>
         </section>`;
     }

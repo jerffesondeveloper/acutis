@@ -22,9 +22,10 @@
 
   <!-- HEADER -->
   <header class="bg-dark text-white d-flex align-items-center justify-content-between py-3 px-3">
-    <a href="../index.html" class="btn btn-light btn-sm">
-      <i class="fas fa-arrow-left me-1"></i>Início
+    <a href="../index.html" class="back-btn" title="Voltar ao Início">
+      <i class="fas fa-arrow-left"></i>
     </a>
+    
     <div class="text-center flex-grow-1">
       <h1 class="h5 m-0">Evangelho e Leituras</h1>
       <p id="data-liturgia" class="fst-italic mb-0"></p>
@@ -50,7 +51,7 @@
     <!-- CONTAINER DE LEITURAS (precisa existir para evangelho.js) -->
     <div id="leituras-container">
       <!--
-        O seu evangelho.js vai limpar este container e injetar:
+        O seu evangelho.js vai  injetar:
         - 1ª Leitura
         - Salmo
         - 2ª Leitura (se houver)
