@@ -14,7 +14,9 @@ html, body {
       margin-right: 400px; /* ou 50px, 6rem, etc. — ajuste conforme quiser */
     }
   }
-
+.buton{
+  background-color: #c00;
+}
 /* -----------cards de forma individual-----------*/
 .card-missal {
     background-color: #cecece;
@@ -34,6 +36,7 @@ html, body {
 }
 
 /*--------Animação dos cards(geral) e cor de fundo ---------- */
+
 .card:hover {
     transform: scale(1.04); 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* sombra mais forte */

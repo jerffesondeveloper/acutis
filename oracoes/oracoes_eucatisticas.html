@@ -6,18 +6,162 @@
     <title>Acutis - Orações Eucarísticas</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/style_btn_ora.css">
 </head>
 <body>
     <header class="bg-dark text-white d-flex align-items-center justify-content-between py-3 px-3">
         <!-- Botão Voltar -->
-        <a href="../index.html" class="btn btn-light btn-sm">
-          ← Início
+        <a href="../index.html" class="back-btn" title="Voltar ao Início">
+          <i class="fas fa-arrow-left"></i>
         </a>
-      
         <!-- Título centralizado -->
         <div class="text-center flex-grow-1">
           <h1 class="h5 m-0">Orações Eucarísticas</h1>
         </div>
-    
+    </header>
+    <main>
+         <div class="container mt-lg-5 mt-3 px-2 text-center text-lg-center" id="titulo">
+          <h1>
+           ORAÇÕES EUCARÍSTICAS
+          </h1>
+        </div>
+
+      <!-- Parte dos card-->
+      <section>
+        <div class="container mt-lg-5 mt-3 px-2">
+          <div class="row justify-content-center">
+            <!-- Oraçõ I-->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"></div>
+                  <h5 class="card-title mt-3">Oração Eucarística I</h5>
+                  <p>Canon Romano</p>
+                  <a href="/oracoes/eucaisticas/oracao1.html" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+            <!-- Oraçõ II-->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"></div>
+                  <h5 class="card-title mt-3">Oração Eucarística II</h5>
+                  <a href="#" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+              <!-- Oraçõ III-->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"></div>
+                  <h5 class="card-title mt-3">Oração Eucarística III</h5>
+                  <a href="#" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+            <!-- Oraçõ IV-->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"></div>
+                  <h5 class="card-title mt-3">Oração Eucarística IV</h5>
+                  <a href="#" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+            <!-- Oraçõ V-->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"></div>
+                  <h5 class="card-title mt-3">Oração Eucarística V</h5>
+                  <a href="#" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+            <!-- Oraçõ VI-->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"><i class="fa-solid fa-church"></i></div>
+                  <h5 class="card-title mt-3">Oração Eucarística</h5>
+                  <a href="#" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+            <!-- Oraçõ VII-->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"><i class="fa-solid fa-church"></i></div>
+                  <h5 class="card-title mt-3">Oração Eucarística</h5>
+                  <a href="#" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+              <div class="card text-center shadow rounded border-0 card-missal">
+                <div class="card-body">
+                  <div class="display-4"><i class="fa-solid fa-church"></i></div>
+                  <h5 class="card-title mt-3">Oração Eucarística</h5>
+                  <a href="#" class="stretched-link"></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </section>
+    </main>
+
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+      <p class="mb-0">&copy; 2025 Jerffeson Oliveira. <br>Laudare, Benedicere, Praedicare.</p>
+      <button type="button" class="btn btn-link text-white small text-decoration-underline" data-bs-toggle="modal" data-bs-target="#modalSobre">
+        SOBRE
+      </button>
+  </footer>
+  
+    <div class="modal fade" id="modalSobre" tabindex="-1" aria-labelledby="modalSobreLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalSobreLabel">Sobre este projeto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <p>Este site foi criado com o objetivo ajudar os católicos nas orações da Santa Missa, afim de entende-la e acompanha-la mais fielmente.<br>
+              Densenvolvido por Jerffeson Oliveira e edição de conteudo do padre Wesley Wendel.
+              </p>
+          </div>
+          <div class="text-center mt-4">
+              <a href="https://instagram.com/jerffesonoliveira" class="text-dark me-3" target="_blank" title="Instagram">
+                <div class="d-inline-flex align-items-center gap-2">
+                  <i class="fab fa-instagram fa-2x"></i>
+                  <span class="h5 mb-0">jerffeson</span>
+                </div>
+              </a>
+              <a href="https://instagram.com/pe.wesley_wendel" class="text-dark me-3" target="_blank" title="Instagram">
+                  <div class="d-inline-flex align-items-center gap-2">
+                    <i class="fab fa-instagram fa-2x"></i>
+                    <span class="h5 mb-0">Pe. Wesley</span>
+                  </div>
+                </a>
+          </div>
+            
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+
 </body>
 </html>

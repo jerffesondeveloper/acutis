@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+
+  @media (min-width: 992px) {
+    .hero header {
+      margin-right: 400px; /* ou 50px, 6rem, etc. — ajuste conforme quiser */
+    }
+  }
+
+body {
+  font-size: 1.08rem;
+  background: #f9f9f7;
+  color: #212529;
+  line-height: 1.7;
+  padding-bottom: 2rem;
+}
+
+.oracoes-centralizada{
+  max-width: 98vw;
+  margin: 1.5rem auto;
+  padding: 1.3rem 1rem 2.5rem 1rem;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: #ba8b33;
+  margin-top: 1.7rem;
+}
+
+@media (min-width: 700px) {
+  .oracoes-centralizada {
+    max-width: 650px;
+    padding: 2rem;
+  }
+}
+
+#titulo-oracao {
+    text-align: center;
+    color: red;
+}
+

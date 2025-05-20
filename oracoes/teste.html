@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orações Eucarísticas | Acutis</title>
+  <!-- Bootstrap opcional -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <!-- Se usar Bootstrap, descomente abaixo -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+<body>
+  <header class="text-center mt-4 mb-5">
+    <a href="../index.html" class="btn btn-outline-secondary mb-2">&larr; Início</a>
+    <h1>Orações Eucarísticas</h1>
+    <p class="lead">Do Missal Romano</p>
+  </header>
+
+  <main class="container" style="max-width: 800px;">
+    <label for="seletor-oracao" class="form-label">Escolha a Oração Eucarística:</label>
+    <select id="seletor-oracao" class="form-select mb-4"></select>
+
+    <div id="conteudo-oracao" class="bg-white rounded shadow-sm p-4"></div>
+  </main>
+
+  <footer class="text-center text-muted mt-5 mb-3">
+    <small>&copy; 2025 Acutis</small>
+  </footer>
+
+  <!-- Script de dados -->
+  <script src="../static/js/oracoes_eucaristicas.js"></script>
+  <!-- Script de lógica -->
+  <script>
+    // PASSO 3: Você poderá mover para oracoes_app.js depois.
+    const seletor = document.getElementById('seletor-oracao');
+    const conteudo = document.getElementById('conteudo-oracao');
+
+    oracoesEucaristicas.forEach(oe => {
+      const opt = document.createElement('option');
+      opt.value = oe.id;
+      opt.textContent = oe.nome;
+      seletor.appendChild(opt);
+    });
+
+    function mostrarOracao(id) {
+      const oracao = oracoesEucaristicas.find(oe => oe.id == id);
+      if (!oracao) return (conteudo.innerHTML = "<p>Selecione uma oração.</p>");
+      conteudo.innerHTML = `
+        <h2 class="mb-3">${oracao.nome}</h2>
+        ${oracao.partes.map(p => `
+          <h3 class="mt-4">${p.titulo}</h3>
+          <p>${p.texto}</p>
+        `).join('')}
+      `;
+    }
+
+    // Mostra a primeira ao abrir
+    mostrarOracao(oracoesEucaristicas[0].id);
+
+    // Atualiza ao trocar
+    seletor.addEventListener('change', e => {
+      mostrarOracao(e.target.value);
+    });
+  </script>
+</body>
+</html>
