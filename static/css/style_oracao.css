@@ -12,6 +12,19 @@ html, body {
     }
   }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+/* margem entre a header e o texto*/
+  main {
+    padding-top: 12px;
+  }
+
+  /* COnfigurações na boy*/
 body {
   font-size: 1.08rem;
   background: #f9f9f7;
@@ -28,9 +41,11 @@ body {
 
 h1, h2, h3 {
   text-align: center;
-  color: #ba8b33;
+  color: #000000;
   margin-top: 1.7rem;
 }
+
+
 
 @media (min-width: 700px) {
   .oracoes-centralizada {
@@ -39,8 +54,26 @@ h1, h2, h3 {
   }
 }
 
-#titulo-oracao {
-    text-align: center;
-    color: red;
+/*classe para específica para os textos*/
+
+.negrito {
+  font-weight: bold;
+}
+.destaque-vermelho {
+  color: #dc4231;  /* vermelho escuro bonito */
 }
 
+
+.rubrica {
+    font-size: 14px;
+    line-height: 1.1;
+    color: #b94722;   /* Rubrica tradicional: vermelho escuro */
+    font-style: italic;
+}
+
+@media (max-width: 576px) {
+  .rubrica {
+    line-height: 1.1; /* ou ajuste o valor para o ideal no mobile */
+    font-size: 13px;
+  }
+}
