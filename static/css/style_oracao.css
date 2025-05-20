@@ -27,7 +27,7 @@ header {
   /* COnfigurações na boy*/
 body {
   font-size: 1.08rem;
-  background: #f9f9f7;
+  background: #ebebe2;
   color: #212529;
   line-height: 1.7;
   padding-bottom: 2rem;
@@ -55,6 +55,21 @@ h1, h2, h3 {
     padding: 2rem;
   }
 }
+/* aba do rito da comunhao */
+.offcanvas-header{
+  background-color: #5e4cd4;
+}
+
+.offcanvas-body{
+  background: #ebebe2;
+  
+}
+
+.offcanvas-header{
+  background-color: #ee2121;
+  text-align: center;
+}
+
 
 /*classe para específica para os textos*/
 
@@ -64,6 +79,10 @@ h1, h2, h3 {
 .destaque-vermelho {
   color: #dc4231;  /* vermelho escuro bonito */
 }
+
+/*.instituicao{
+  line-height: 1.5;
+}*/
 
 .rubrica {
     display: block;
