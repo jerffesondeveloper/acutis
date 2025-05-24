@@ -60,13 +60,15 @@ h1, h2, h3 {
   background-color: #5e4cd4;
 }
 
+
+
 .offcanvas-body{
   background: #ebebe2;
   
 }
 
 .offcanvas-header{
-  background-color: #ee2121;
+  background-color: #000000;
   text-align: center;
 }
 
@@ -109,3 +111,44 @@ details summary::-webkit-details-marker {
   display: none;            /* Remove no Chrome/Safari */
 }
 
+.font_cruz {
+  font-family: arial;
+  
+} 
+
+/* Botão de * na II oração e outras */
+.custom-btn {
+    background-color: #918f8f;  /* Cor de fundo */
+    color: rgb(0, 0, 0);  /* Cor do texto */
+    border-radius: 5px;  /* Borda arredondada */
+    padding: 10px 20px;  /* Ajusta o espaçamento dentro do botão */
+    font-size: 16px;  /* Tamanho de fonte padrão */
+}
+
+.custom-btn:hover {
+    background-color: #218838;  /* Cor de fundo ao passar o mouse */
+}
+
+.custom-btn:active {
+    background-color: #218838;  /* Cor de fundo ao pressionar o botão (para celular) */
+}
+
+.custom-btn .rubrica {
+    font-weight: bold;  /* Torna a rubrica em negrito */
+}
+
+/* Media Query para telas pequenas (ex: celulares) */
+@media (max-width: 767px) {
+    .custom-btn {
+        padding: 8px 15px;  /* Reduz o espaçamento interno para telas pequenas */
+        font-size: 14px;  /* Reduz o tamanho da fonte */
+    }
+}
+
+/* Media Query para telas extra pequenas (ex: smartphones em modo retrato) */
+@media (max-width: 480px) {
+    .custom-btn {
+        padding: 6px 12px;  /* Ajusta ainda mais o espaçamento */
+        font-size: 12px;  /* Diminui ainda mais o tamanho da fonte */
+    }
+}
