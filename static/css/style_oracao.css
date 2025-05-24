@@ -116,9 +116,15 @@ details summary::-webkit-details-marker {
   
 } 
 
+/* Botão COMUNHÃO */
+
+.comunhao-btn{
+  background-color: #FFD700;
+}
+
 /* Botão de * na II oração e outras */
 .custom-btn {
-    background-color: #918f8f;  /* Cor de fundo */
+    background-color: #887d7d;  /* Cor de fundo */
     color: rgb(0, 0, 0);  /* Cor do texto */
     border-radius: 5px;  /* Borda arredondada */
     padding: 10px 20px;  /* Ajusta o espaçamento dentro do botão */
@@ -126,11 +132,7 @@ details summary::-webkit-details-marker {
 }
 
 .custom-btn:hover {
-    background-color: #218838;  /* Cor de fundo ao passar o mouse */
-}
-
-.custom-btn:active {
-    background-color: #218838;  /* Cor de fundo ao pressionar o botão (para celular) */
+    background-color: #46cc63;  /* Cor de fundo ao passar o mouse */
 }
 
 .custom-btn .rubrica {
@@ -151,4 +153,18 @@ details summary::-webkit-details-marker {
         padding: 6px 12px;  /* Ajusta ainda mais o espaçamento */
         font-size: 12px;  /* Diminui ainda mais o tamanho da fonte */
     }
+}
+
+#section-pad {
+  display: block;
+  margin-bottom: 0;
+}
+
+/* Linha na horizontal */
+hr {
+  border: 0; /* Remove a borda padrão */
+  height: 3px; /* Define a altura da linha */
+  background-color: #000000; /* Cor da linha */
+  width: 100%; /* Largura da linha */
+  margin: 15px auto; /* Define a margem para centralizar */
 }
