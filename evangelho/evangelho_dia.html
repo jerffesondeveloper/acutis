@@ -1,424 +1,172 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Leituras do Dia - Teste</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f8f9fa;
-      line-height: 1.6;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding: 20px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border-radius: 10px;
-    }
-    .controles {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding: 15px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .controles input, .controles button {
-      padding: 8px 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    .controles button {
-      background: #667eea;
-      color: white;
-      cursor: pointer;
-      border: none;
-    }
-    .controles button:hover {
-      background: #5a67d8;
-    }
-    .leituras-container {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #666;
-      font-style: italic;
-    }
-    .error {
-      color: #e53e3e;
-      background-color: #fed7d7;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px;
-      border-left: 4px solid #e53e3e;
-    }
-    .liturgia-header {
-      background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-      color: white;
-      padding: 25px;
-      text-align: center;
-    }
-    .liturgia-header h2 {
-      margin: 0 0 10px 0;
-      font-size: 24px;
-    }
-    .liturgia-header .data {
-      font-size: 18px;
-      opacity: 0.9;
-    }
-    .liturgia-header .tempo {
-      font-size: 16px;
-      opacity: 0.8;
-      font-style: italic;
-    }
-    .leituras-lista {
-      padding: 20px;
-    }
-    .leitura {
-      margin-bottom: 30px;
-      padding: 20px;
-      background: #f7fafc;
-      border-left: 5px solid #667eea;
-      border-radius: 0 8px 8px 0;
-    }
-    .leitura:last-child {
-      margin-bottom: 0;
-    }
-    .leitura.evangelho {
-      border-left-color: #d69e2e;
-      background: #fffbeb;
-    }
-    .leitura.salmo {
-      border-left-color: #38a169;
-      background: #f0fff4;
-    }
-    .leitura.primeira {
-      border-left-color: #3182ce;
-      background: #ebf8ff;
-    }
-    .leitura.segunda {
-      border-left-color: #805ad5;
-      background: #faf5ff;
-    }
-    .tipo-leitura {
-      color: #2d3748;
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .titulo-leitura {
-      color: #4a5568;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .referencia {
-      color: #718096;
-      font-style: italic;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-    .texto-leitura {
-      color: #2d3748;
-      font-size: 16px;
-      line-height: 1.8;
-      text-align: justify;
-    }
-    .debug {
-      background-color: #fff3cd;
-      border: 1px solid #ffeaa7;
-      padding: 15px;
-      margin: 15px 0;
-      font-family: monospace;
-      font-size: 12px;
-      border-radius: 5px;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .api-status {
-      text-align: center;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    .api-status.success {
-      background: #c6f6d5;
-      color: #22543d;
-    }
-    .api-status.fallback {
-      background: #feebc8;
-      color: #744210;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liturgia Diária</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/evangelho.css">
 </head>
 <body>
-  <div class="header">
-    <h1>📖 Evangelho e Leituras do Dia</h1>
-    <p>Liturgia Diária Católica</p>
-  </div>
+  <header class="bg-dark text-white d-flex align-items-center justify-content-between py-3 px-3 header-fixa">
+        <a href="../index.html" class="back-btn" title="Voltar ao Início">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="text-center flex-grow-1">
+            <h1 class="h5 m-0">Liturgia Diária</h1>
+        </div>
+  </header>
+    <div class="container">
+        <div class="navegacao">
+            <button onclick="navegarDia(-1)">Dia Anterior</button>
+            <button onclick="voltarHoje()">Hoje</button>
+            <button onclick="navegarDia(1)">Próximo Dia</button>
+            <input type="date" id="selecionar-data" onchange="carregarLiturgia(this.value)">
+        </div>
+        <h1>Liturgia Diária - <span id="data">Carregando...</span></h1>
+        <div id="liturgia-content">
+            <!-- O JS insere as leituras aqui -->
+        </div>
+    </div>
 
-  <div class="controles">
-    <label for="dataLiturgia">📅 Data: </label>
-    <input type="date" id="dataLiturgia">
-    <button id="btnBuscar">🔍 Buscar</button>
-    <button id="btnHoje">📅 Hoje</button>
-  </div>
+    <script>
+        let dataAtual = new Date().toISOString().split('T')[0];
 
-  <div id="apiStatus" class="api-status" style="display: none;"></div>
-  <div id="debug" class="debug" style="display: none;"></div>
-  <div id="leituras" class="leituras-container"></div>
-
-  <script>
-    async function buscarLeituras(data) {
-      const debugDiv = document.getElementById('debug');
-      const leiturasDiv = document.getElementById('leituras');
-      const statusDiv = document.getElementById('apiStatus');
-      
-      leiturasDiv.innerHTML = '<div class="loading">🔄 Carregando leituras...</div>';
-      debugDiv.style.display = 'block';
-      statusDiv.style.display = 'none';
-      
-      try {
-        // Primeira tentativa: API original
-        debugDiv.innerHTML = 'Tentando API original via AllOrigins...';
-        
-        const originalUrl = `https://liturgiadiaria.site/api/v1/${data}`;
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(originalUrl)}`;
-        
-        const response = await fetch(proxyUrl);
-        
-        if (response.ok) {
-          const proxyResponse = await response.text();
-          debugDiv.innerHTML += '<br>Resposta do proxy recebida!';
-          
-          const parsedProxy = JSON.parse(proxyResponse);
-          
-          if (parsedProxy.status && parsedProxy.status.http_code === 200) {
-            const liturgiaData = JSON.parse(parsedProxy.contents);
-            debugDiv.innerHTML += '<br>✅ API original funcionou!';
-            statusDiv.innerHTML = '✅ Dados carregados da API oficial';
-            statusDiv.className = 'api-status success';
-            statusDiv.style.display = 'block';
-            return processarResposta(liturgiaData, false);
-          } else {
-            throw new Error(`HTTP ${parsedProxy.status.http_code}`);
-          }
-        } else {
-          throw new Error(`Proxy falhou: ${response.status}`);
+        function formatarData(data) {
+            const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
+                        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            const [ano, mes, dia] = data.split('-');
+            return `${parseInt(dia)} de ${meses[parseInt(mes) - 1]} de ${ano}`;
         }
-        
-      } catch (e) {
-        debugDiv.innerHTML += `<br>❌ API original falhou: ${e.message}`;
-        debugDiv.innerHTML += '<br><br>🔄 Usando dados de exemplo...';
-        
-        // Fallback: dados simulados mais completos
-        const dadosSimulados = criarDadosSimulados(data);
-        statusDiv.innerHTML = '⚠️ Usando dados de exemplo (API indisponível)';
-        statusDiv.className = 'api-status fallback';
-        statusDiv.style.display = 'block';
-        
-        return processarResposta(dadosSimulados, true);
-      }
-    }
-    
-    function criarDadosSimulados(data) {
-      const dataObj = new Date(data + 'T00:00:00');
-      const diaSemana = dataObj.getDay(); // 0 = domingo
-      const isDomingo = diaSemana === 0;
-      const isPascoa = data.includes('2025-03-30') || data.includes('2025-04-20'); // Exemplos
-      
-      let leituras = [];
-      
-      // Primeira leitura (sempre presente)
-      leituras.push({
-        tipo: "Primeira Leitura",
-        titulo: "Leitura do Livro do Gênesis",
-        referencia: "Gn 1,1-15",
-        texto: `No princípio, Deus criou o céu e a terra.
 
-A terra estava sem forma e vazia; as trevas cobriam o abismo e o Espírito de Deus pairava sobre as águas.
+        async function carregarLiturgia(dataSelecionada) {
+            dataAtual = dataSelecionada || dataAtual;
+            document.getElementById('selecionar-data').value = dataAtual;
+            document.getElementById('data').innerText = formatarData(dataAtual);
+            const contentContainer = document.getElementById('liturgia-content');
+            contentContainer.innerHTML = `<div class="loading">Carregando...</div>`;
 
-Deus disse: "Faça-se a luz!" E a luz foi feita. Deus viu que a luz era boa, e separou a luz das trevas.
+            try {
+                const response = await fetch(`https://liturgia.up.railway.app/v2/?dia=${dataAtual.split('-')[2]}&mes=${dataAtual.split('-')[1]}&ano=${dataAtual.split('-')[0]}`);
+                if (!response.ok) throw new Error('Liturgia não encontrada');
+                const data = await response.json();
 
-Deus chamou à luz "Dia" e às trevas "Noite". Houve uma tarde e uma manhã: primeiro dia.`
-      });
-      
-      // Segunda leitura (domingos e solenidades)
-      if (isDomingo || isPascoa) {
-        leituras.push({
-          tipo: "Segunda Leitura",
-          titulo: "Leitura da Primeira Carta de São Paulo aos Coríntios",
-          referencia: "1Cor 15,3-8",
-          texto: `Irmãos, transmiti-vos, em primeiro lugar, aquilo que eu mesmo recebi: Cristo morreu por nossos pecados, segundo as Escrituras.
+                // Organiza blocos de leitura (suporta múltiplas para Vigília Pascal, sequências, etc.)
+                let html = '';
 
-Foi sepultado, ressuscitou ao terceiro dia, segundo as Escrituras.
+                // Proclamação da Páscoa
+                const exulte = (data.leituras.extras || []).find(extra => extra.titulo?.toLowerCase().includes('proclamação da páscoa'));
+                if (exulte) {
+                    html += `
+                        <div class="liturgia-section">
+                            <h2>Proclamação da Páscoa</h2>
+                            <p>${exulte.texto}</p>
+                        </div>`;
+                }
 
-Apareceu a Cefas, e depois aos Doze. Em seguida, apareceu a mais de quinhentos irmãos de uma vez.`
-        });
-      }
-      
-      // Salmo responsorial
-      leituras.push({
-        tipo: "Salmo Responsorial",
-        titulo: "Salmo 103 (104)",
-        referencia: "Sl 103,1-4.24.35c",
-        texto: `R. Bendize, ó minha alma, ao Senhor!
+                // Leituras + Salmos (para Vigília Pascal)
+                const leiturasExtras = (data.leituras.extras || []).filter(extra =>
+                    !extra.titulo?.toLowerCase().includes('proclamação da páscoa') &&
+                    !extra.titulo?.toLowerCase().includes('sequência')
+                );
+                const salmos = data.leituras.salmo || [];
 
-Bendize, ó minha alma, ao Senhor!
-Ó Senhor meu Deus, como sois grande!
-Vos revestistes de esplendor e majestade,
-e vos cobristes de luz como de um manto.
+                // Primeira leitura
+                const primeiraLeitura = data.leituras.primeiraLeitura?.[0];
+                if (primeiraLeitura) {
+                    html += `
+                        <div class="liturgia-section">
+                            <h2>Primeira Leitura</h2>
+                            <p><strong>${primeiraLeitura.titulo || ''}</strong><br>${primeiraLeitura.texto || ''}</p>
+                        </div>`;
+                    if (salmos[0])
+                        html += `
+                            <div class="liturgia-section">
+                                <h2>Salmo</h2>
+                                <p><strong>${salmos[0].referencia || ''}: ${salmos[0].refrao || ''}</strong><br>${salmos[0].texto || ''}</p>
+                            </div>`;
+                }
 
-R. Bendize, ó minha alma, ao Senhor!`
-      });
-      
-      // Evangelho (sempre presente)
-      leituras.push({
-        tipo: "Evangelho",
-        titulo: "Evangelho de Nosso Senhor Jesus Cristo segundo São João",
-        referencia: "Jo 1,1-18",
-        texto: `No princípio era o Verbo, e o Verbo estava junto de Deus, e o Verbo era Deus.
+                // Segunda leitura
+                const segundaLeitura = data.leituras.segundaLeitura?.[0];
+                if (segundaLeitura) {
+                    html += `
+                        <div class="liturgia-section">
+                            <h2>Segunda Leitura</h2>
+                            <p><strong>${segundaLeitura.titulo || ''}</strong><br>${segundaLeitura.texto || ''}</p>
+                        </div>`;
+                    if (salmos[1])
+                        html += `
+                            <div class="liturgia-section">
+                                <h2>Salmo</h2>
+                                <p><strong>${salmos[1].referencia || ''}: ${salmos[1].refrao || ''}</strong><br>${salmos[1].texto || ''}</p>
+                            </div>`;
+                }
 
-Ele estava no princípio junto de Deus. Tudo foi feito por meio dele, e sem ele nada foi feito.
+                // Leituras extras (3a a 7a leitura) e seus salmos (Vigília Pascal)
+                for (let i = 0; i < leiturasExtras.length; i++) {
+                    const leitura = leiturasExtras[i];
+                    html += `
+                        <div class="liturgia-section">
+                            <h2>${leitura.tipo || `Leitura ${i + 3}`}</h2>
+                            <p><strong>${leitura.titulo || ''}</strong><br>${leitura.texto || ''}</p>
+                        </div>`;
+                    if (salmos[i + 2]) {
+                        html += `
+                            <div class="liturgia-section">
+                                <h2>Salmo</h2>
+                                <p><strong>${salmos[i + 2].referencia || ''}: ${salmos[i + 2].refrao || ''}</strong><br>${salmos[i + 2].texto || ''}</p>
+                            </div>`;
+                    }
+                }
 
-Nele havia vida, e a vida era a luz dos homens. A luz resplandece nas trevas, e as trevas não a compreenderam.
+                // Sequência (Páscoa)
+                const sequencia = (data.leituras.extras || []).find(extra => extra.titulo?.toLowerCase().includes('sequência'));
+                if (sequencia) {
+                    html += `
+                        <div class="liturgia-section">
+                            <h2>Sequência</h2>
+                            <p>${sequencia.texto}</p>
+                        </div>`;
+                }
 
-E o Verbo se fez carne e habitou entre nós. E nós vimos a sua glória, glória que ele tem junto do Pai como Filho único, cheio de graça e de verdade.`
-      });
-      
-      // Leituras extras para ocasiões especiais
-      if (isPascoa) {
-        leituras.splice(1, 0, {
-          tipo: "Leitura dos Atos dos Apóstolos",
-          titulo: "Leitura dos Atos dos Apóstolos",
-          referencia: "At 10,34a.37-43",
-          texto: `Naqueles dias, Pedro pôs-se a falar e disse: "Vós sabeis o que aconteceu em toda a Judéia, começando pela Galileia, depois do batismo pregado por João.
+                // Evangelho
+                const evangelho = data.leituras.evangelho?.[0];
+                if (evangelho) {
+                    html += `
+                        <div class="liturgia-section">
+                            <h2>Evangelho</h2>
+                            <p><strong>${evangelho.titulo || ''}</strong><br>${evangelho.texto || ''}</p>
+                        </div>`;
+                }
 
-Vós sabeis como Deus ungiu Jesus de Nazaré com o Espírito Santo e com poder. Ele andou por toda parte, fazendo o bem e curando todos os oprimidos pelo demônio, porque Deus estava com ele."`
-        });
-      }
-      
-      return {
-        titulo: isPascoa ? "Domingo de Páscoa da Ressurreição do Senhor" : 
-                isDomingo ? "Domingo - Tempo Comum" : "Liturgia do Dia",
-        dia: dataObj.toLocaleDateString('pt-BR', { 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        }).replace(/^\w/, c => c.toUpperCase()),
-        tempoliturgico: isPascoa ? "Tempo Pascal" : "Tempo Comum",
-        leituras: leituras
-      };
-    }
-    
-    function processarResposta(json, isSimulado = false) {
-      const leiturasDiv = document.getElementById('leituras');
-      const debugDiv = document.getElementById('debug');
-      
-      if (!isSimulado) {
-        debugDiv.innerHTML += `<br><br>📊 Estrutura dos dados:<br>${JSON.stringify(json, null, 2)}`;
-      }
-      
-      let html = '';
-      
-      // Cabeçalho da liturgia
-      html += '<div class="liturgia-header">';
-      if (json.titulo) {
-        html += `<h2>${json.titulo}</h2>`;
-      }
-      if (json.dia) {
-        html += `<div class="data">${json.dia}</div>`;
-      }
-      if (json.tempoliturgico) {
-        html += `<div class="tempo">${json.tempoliturgico}</div>`;
-      }
-      html += '</div>';
-      
-      // Lista de leituras
-      if (json.leituras && Array.isArray(json.leituras)) {
-        html += '<div class="leituras-lista">';
-        
-        json.leituras.forEach((leitura, index) => {
-          let tipoClass = '';
-          const tipoLower = leitura.tipo.toLowerCase();
-          
-          if (tipoLower.includes('evangelho')) tipoClass = 'evangelho';
-          else if (tipoLower.includes('salmo')) tipoClass = 'salmo';
-          else if (tipoLower.includes('primeira')) tipoClass = 'primeira';
-          else if (tipoLower.includes('segunda')) tipoClass = 'segunda';
-          
-          html += `<div class="leitura ${tipoClass}">`;
-          html += `<div class="tipo-leitura">${leitura.tipo}</div>`;
-          
-          if (leitura.titulo) {
-            html += `<div class="titulo-leitura">${leitura.titulo}</div>`;
-          }
-          
-          if (leitura.referencia) {
-            html += `<div class="referencia">${leitura.referencia}</div>`;
-          }
-          
-          if (leitura.texto) {
-            html += `<div class="texto-leitura">${leitura.texto.replace(/\n/g, '<br><br>')}</div>`;
-          }
-          
-          html += '</div>';
-        });
-        
-        html += '</div>';
-      } else {
-        html += '<div class="leituras-lista"><p>❌ Estrutura de leituras não encontrada</p></div>';
-      }
-      
-      leiturasDiv.innerHTML = html;
-      
-      // Esconde debug após sucesso (opcional)
-      setTimeout(() => {
-        debugDiv.style.display = 'none';
-      }, 3000);
-    }
+                // Caso nenhuma leitura seja encontrada
+                if (!html) {
+                    html = `<div class="error">Liturgia não disponível para esta data.</div>`;
+                }
 
-    // Event listeners
-    document.getElementById('btnBuscar').onclick = function() {
-      const data = document.getElementById('dataLiturgia').value;
-      if (!data) {
-        alert("📅 Por favor, escolha uma data.");
-        return;
-      }
-      buscarLeituras(data);
-    };
-    
-    document.getElementById('btnHoje').onclick = function() {
-      const hoje = new Date();
-      const yyyy = hoje.getFullYear();
-      const mm = String(hoje.getMonth() + 1).padStart(2, '0');
-      const dd = String(hoje.getDate()).padStart(2, '0');
-      const dataHoje = `${yyyy}-${mm}-${dd}`;
-      document.getElementById('dataLiturgia').value = dataHoje;
-      buscarLeituras(dataHoje);
-    };
+                contentContainer.innerHTML = html;
 
-    // Carrega automaticamente o dia de hoje
-    window.onload = function() {
-      document.getElementById('btnHoje').click();
-    };
-  </script>
+            } catch (error) {
+                document.getElementById('liturgia-content').innerHTML = `<div class="error">Erro ao carregar leituras: ${error.message}</div>`;
+            }
+        }
+
+        function navegarDia(dias) {
+            const data = new Date(dataAtual);
+            data.setDate(data.getDate() + dias);
+            dataAtual = data.toISOString().split('T')[0];
+            carregarLiturgia(dataAtual);
+        }
+
+        function voltarHoje() {
+            dataAtual = new Date().toISOString().split('T')[0];
+            carregarLiturgia(dataAtual);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => carregarLiturgia());
+    </script>
 </body>
 </html>
