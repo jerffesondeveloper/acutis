@@ -79,13 +79,14 @@
                     html += `
                         <div class="liturgia-section">
                             <h2>Primeira Leitura</h2>
-                            <p><strong>${primeiraLeitura.titulo || ''}</strong><br>${primeiraLeitura.texto || ''}</p>
+                            <p ><strong style=color: black">${primeiraLeitura.referencia}<br>${primeiraLeitura.titulo || ''}</strong><br>${primeiraLeitura.texto || ''}</p>
                         </div>`;
                     if (salmos[0])
                         html += `
                             <div class="liturgia-section">
                                 <h2>Salmo</h2>
-                                <p><strong>${salmos[0].referencia || ''}: ${salmos[0].refrao || ''}</strong><br>${salmos[0].texto || ''}</p>
+                                <p><strong>${salmos[0].referencia || ''} <br> ${salmos[0].refrao || ''}</strong><br>${(salmos[0].texto || '').replace(/\n/g, '<br>')}</p>
+
                             </div>`;
                 }
 
@@ -95,7 +96,7 @@
                     html += `
                         <div class="liturgia-section">
                             <h2>Segunda Leitura</h2>
-                            <p><strong>${segundaLeitura.titulo || ''}</strong><br>${segundaLeitura.texto || ''}</p>
+                            <p><strong> ${segundaLeitura.referencia} <br>${segundaLeitura.titulo || ''}</strong><br>${segundaLeitura.texto || ''}</p>
                         </div>`;
                     if (salmos[1])
                         html += `
@@ -138,7 +139,7 @@
                     html += `
                         <div class="liturgia-section">
                             <h2>Evangelho</h2>
-                            <p><strong>${evangelho.titulo || ''}</strong><br>${evangelho.texto || ''}</p>
+                            <p><strong>${evangelho.referencia} <br>${evangelho.titulo || ''}</strong><br>${evangelho.texto || ''}</p>
                         </div>`;
                 }
 

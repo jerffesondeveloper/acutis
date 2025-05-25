@@ -8,7 +8,7 @@ body {
 .container {
     max-width: 800px;
     margin: auto;
-    background: white;
+    background: #ebebe2;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -31,7 +31,7 @@ h1 {
     margin-bottom: 8px;
 }
 .liturgia-section p {
-    line-height: 1.6;
+    line-height: 1.7;
 }
 .loading, .error {
     color: #888;
@@ -67,6 +67,7 @@ h1 {
     }
     .liturgia-section h2 {
         font-size: 1.3em;
+        
     }
     .liturgia-section h3 {
         font-size: 1.1em;
@@ -103,4 +104,12 @@ body {
     body {
         padding-top: 58px;
     }
+}
+
+/* classe de rubirca */
+.rubrica-text{
+
+    color: red;
+   
+    
 }
