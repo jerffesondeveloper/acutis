@@ -15,9 +15,15 @@
             <i class="fas fa-arrow-left"></i>
         </a>
         <div class="text-center flex-grow-1">
-            <h1 class="h5 m-0">Liturgia Diária</h1>
+            <h1 class="h3 m-0">Liturgia Diária</h1>
         </div>
   </header>
+    <div class="d-flex justify-content-end" style="margin-top: 10px; margin-right: 20px;">
+        <button id="toggle-dark" class="btn btn-sm btn-secondary">
+            <i class="fas fa-moon"></i> Modo Escuro
+        </button>
+    </div>
+
     <div class="container">
         <div class="navegacao">
             <button onclick="navegarDia(-1)">Dia Anterior</button>
@@ -30,7 +36,6 @@
             <!-- O JS insere as leituras aqui -->
         </div>
     </div>
-
     <script>
         let dataAtual = new Date().toISOString().split('T')[0];
 
@@ -53,8 +58,36 @@
                 if (!response.ok) throw new Error('Liturgia não encontrada');
                 const data = await response.json();
 
+                const cores = {
+                    'Verde': '#4caf50',
+                    'Vermelho': '#e53935',
+                    'Roxo': '#7b1fa2',
+                    'Branco': '#fff',
+                    'Rosa': '#f06292'
+                };
+
+                let cor = data.cor || 'Verde';
+                let corHex = cores[cor] || '#4caf50';
+
+                let headerHtml = `
+                <div class="liturgia-header text-center my-3" style="display: flex; align-items: center; justify-content: center; gap: 18px;">
+                    <span class="cor-liturgica"
+                    style="display:inline-block;width:22px;height:22px;border-radius:50%;background:${corHex};border:2px solid #ccc;vertical-align:middle;"
+                    title="Cor Litúrgica: ${cor}"
+                    ></span>
+                    <span style="font-size:1.2em;font-weight:600;vertical-align:middle;" id="nome-liturgia">
+                    ${data.liturgia || data.titulo || 'Liturgia do Dia'}
+                    </span>
+                </div>
+                `;
+
+                
+                contentContainer.innerHTML = headerHtml;
+
+
                 // Organiza blocos de leitura (suporta múltiplas para Vigília Pascal, sequências, etc.)
                 let html = '';
+
 
                 // Proclamação da Páscoa
                 const exulte = (data.leituras.extras || []).find(extra => extra.titulo?.toLowerCase().includes('proclamação da páscoa'));
@@ -80,12 +113,15 @@
                         <div class="liturgia-section">
                             <h2>Primeira Leitura</h2>
                             <p ><strong style=color: black">${primeiraLeitura.referencia}<br>${primeiraLeitura.titulo || ''}</strong><br>${primeiraLeitura.texto || ''}</p>
+                            <p class="negrito">- Palavra do senhor <br> - Graças a Deus</p>
+                            
                         </div>`;
                     if (salmos[0])
                         html += `
                             <div class="liturgia-section">
                                 <h2>Salmo</h2>
                                 <p><strong>${salmos[0].referencia || ''} <br> ${salmos[0].refrao || ''}</strong><br>${(salmos[0].texto || '').replace(/\n/g, '<br>')}</p>
+                                
 
                             </div>`;
                 }
@@ -97,12 +133,13 @@
                         <div class="liturgia-section">
                             <h2>Segunda Leitura</h2>
                             <p><strong> ${segundaLeitura.referencia} <br>${segundaLeitura.titulo || ''}</strong><br>${segundaLeitura.texto || ''}</p>
+                            <p class="negrito">- Palavra do senhor <br>- Graças a Deus</p>
                         </div>`;
                     if (salmos[1])
                         html += `
                             <div class="liturgia-section">
                                 <h2>Salmo</h2>
-                                <p><strong>${salmos[1].referencia || ''}: ${salmos[1].refrao || ''}</strong><br>${salmos[1].texto || ''}</p>
+                                <p class="salmo-refrao"><strong >${salmos[1].referencia || ''}: ${salmos[1].refrao || ''}</strong><br>${salmos[1].texto || ''}</p>
                             </div>`;
                 }
 
@@ -140,6 +177,7 @@
                         <div class="liturgia-section">
                             <h2>Evangelho</h2>
                             <p><strong>${evangelho.referencia} <br>${evangelho.titulo || ''}</strong><br>${evangelho.texto || ''}</p>
+                            <p class="negrito">- Palavra da Salvação <br>- Gloria a vós Senhor</p>
                         </div>`;
                 }
 
@@ -148,7 +186,8 @@
                     html = `<div class="error">Liturgia não disponível para esta data.</div>`;
                 }
 
-                contentContainer.innerHTML = html;
+                contentContainer.innerHTML = headerHtml + html;
+
 
             } catch (error) {
                 document.getElementById('liturgia-content').innerHTML = `<div class="error">Erro ao carregar leituras: ${error.message}</div>`;
@@ -169,5 +208,27 @@
 
         document.addEventListener('DOMContentLoaded', () => carregarLiturgia());
     </script>
+    <script>
+    document.getElementById('toggle-dark').onclick = function() {
+    const atual = document.body.getAttribute('data-theme');
+    if (atual === 'dark') {
+        document.body.removeAttribute('data-theme');
+        this.innerHTML = '<i class="fas fa-moon"></i> Modo Escuro';
+    } else {
+        document.body.setAttribute('data-theme', 'dark');
+        this.innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
+    }
+    };
+    // Mantém o modo escolhido ao recarregar (opcional):
+    if (localStorage.getItem('theme') === 'dark') {
+    document.body.setAttribute('data-theme', 'dark');
+    document.getElementById('toggle-dark').innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
+    }
+    document.getElementById('toggle-dark').addEventListener('click', function() {
+    const isDark = document.body.getAttribute('data-theme') === 'dark';
+    localStorage.setItem('theme', isDark ? 'dark' : '');
+    });
+    </script>
+
 </body>
 </html>
