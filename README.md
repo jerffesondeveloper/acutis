@@ -1,1 +1,1 @@
-# acutis
+# Este projeto esta sendo desenvoldio para como forma de praticar habilidades em HTML e CSS, construindo um projeto real e que tenha utilidade pública. 
